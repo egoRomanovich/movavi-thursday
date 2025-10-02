@@ -1,19 +1,25 @@
-class TooBigNumber(Exception):
-    pass
 
-try:
-    a = int(input())
-    b = int(input())
-    if a > 100000 or b > 100000:
-        raise TooBigNumber
-    print(a / b)
-except ValueError:
-    print('Вводите только числа!')
-except TooBigNumber:
-    print('Вы ввели сильно большое число')
-except ZeroDivisionError:
-    print('Делить на 0 нельзя!')
-except Exception:
-    print('Возникла какая-то ошибка!')
-finally:
-    print('Хорошего дня!')
+def calculate(a, b, operation='+'):
+    """
+        Получает на вход два числа и операцию.
+        Возвращает результат указанной операции с передаными числами.
+    """
+    if operation == '+':
+        return a + b
+    elif operation == '-':
+        return a - b
+    elif operation == '*':
+        return a * b
+    elif operation == '/':
+        if b == 0:
+            return "ОШИБКА: Деление на ноль."
+        return a / b
+    elif operation == '**':
+        return a ** b
+    else:
+        print('Указанная операция не распознана.')
+        return None
+    
+calculate(1, 2)
+calculate(2, 2, "-")
+calculate(3, 2, "**")
